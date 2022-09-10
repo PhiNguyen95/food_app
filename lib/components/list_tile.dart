@@ -24,13 +24,13 @@ class CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Container(
           width: MediaQuery.of(context).size.width,
           height: 150,
           decoration: BoxDecoration(
             color: kFoodAppWhite,
-            borderRadius: BorderRadius.circular(kDefaultPaddingButton * 1.5),
+            borderRadius: BorderRadius.circular(kDefaultPaddingButton),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.5),
@@ -45,20 +45,24 @@ class CustomListTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 100,
-                  width: 100,
-                  child: Image.asset(
-                    imageUrl,
-                    fit: BoxFit.fill,
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: 100,
+                    width: 100,
+                    child: Image.asset(
+                      imageUrl,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
               ),
               Expanded(
+                flex: 2,
                 child: Padding(
-                  padding: const EdgeInsets.all(kDefaultPadding),
+                  padding: const EdgeInsets.all(8),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
@@ -67,16 +71,26 @@ class CustomListTile extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
-                            title,
-                            style: CustomStyle.titleBlack(context),
-                          ),
-                          const Spacer(),
-                          Text(
-                            '${numOrder}x',
-                            style: CustomStyle.textRedLarge(context)?.copyWith(
+                          Expanded(
+                            flex: 4,
+                            child: Text(
+                              title,
+                              style: CustomStyle.textBackLarge(context)?.copyWith(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 24
+                              ),
+                            ),
+                          ),
+                          const Spacer(
+                            flex: 1,
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              '${numOrder}x',
+                              style: CustomStyle.textRedLarge(context)
+                                  ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24),
                             ),
                           ),
                         ],
@@ -85,6 +99,7 @@ class CustomListTile extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           subTitle,
+                          softWrap: true,
                           style: CustomStyle.textBackSmall(context),
                           textAlign: TextAlign.start,
                         ),
@@ -97,15 +112,18 @@ class CustomListTile extends StatelessWidget {
                             "\$ ",
                             style: CustomStyle.textRedLarge(context),
                           ),
-                          Text(
-                            price.toStringAsFixed(2),
-                            style: CustomStyle.titleBlack(context)?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              price.toStringAsFixed(2),
+                              style: CustomStyle.titleBlack(context)
+                                  ?.copyWith(fontWeight: FontWeight.bold),
                             ),
                           ),
-                          const Spacer(),
-                          RatingBarCustom(star: numStar),
+                          Expanded(
+                            flex: 2,
+                            child: RatingBarCustom(star: numStar),
+                          ),
                         ],
                       ),
                     ],

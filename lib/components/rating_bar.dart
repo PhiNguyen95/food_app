@@ -9,7 +9,7 @@ class RatingBarCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RatingBar(
-      itemSize: 20,
+      itemSize: 10,
       initialRating: star,
       direction: Axis.horizontal,
       allowHalfRating: true,

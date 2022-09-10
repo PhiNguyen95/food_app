@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../resources/app_style.dart';
 import 'back_button.dart';
 
-class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({Key? key, required this.title}) : super(key: key);
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
+  const CustomAppBar({Key? key, required this.title}) : super();
 
-  final String title;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget {
         Expanded(
           child: Align(
             child: Text(
-              title,
+              title ?? "",
               style: CustomStyle.titleBlack(context),
             ),
           ),
@@ -26,4 +26,7 @@ class CustomAppBar extends StatelessWidget {
       ],
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(50);
 }

@@ -19,8 +19,10 @@ class SignInPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               const CustomAppBar(title: 'Sign In'),
-              const SizedBox(
-                height: kDefaultPadding * 4,
+              const Expanded(
+                child: SizedBox(
+                  height: kDefaultPadding * 4,
+                ),
               ),
               Text(
                 'Welcome Back',
